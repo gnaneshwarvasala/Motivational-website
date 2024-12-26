@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inspire Now</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #e0f7fa, #80deea);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    h1 {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 28px;
+      font-weight: bold;
+      color: #00796b;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      letter-spacing: 2px;
+    }
+    .box {
+      width: 200px;
+      height: 200px;
+      background-color: #388e3c;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 18px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s ease;
+      animation: pulse 2s infinite;
+    }
+    .box:hover {
+      background-color: #2e7d32;
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    }
+    .box:active {
+      transform: scale(0.95);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    .box.hidden {
+      opacity: 0;
+      display: none;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    .quote {
+      font-size: 28px;
+      font-weight: bold;
+      color: #333;
+      text-align: center;
+      max-width: 80%;
+      animation: fadeIn 1.2s ease, shake 1.5s ease;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+      margin-top: 20px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+      20%, 40%, 60%, 80% { transform: translateX(5px); }
+    }
+    .style1 {
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .style2 {
+      color: #3f51b5;
+      letter-spacing: 2px;
+    }
+    .style3 {
+      color: #009688;
+      font-style: italic;
+      font-size: 32px;
+    }
+    .style4 {
+      color: #ff9800;
+      font-weight: bold;
+      text-shadow: 3px 3px 6px #ffe0b2;
+    }
+    .style5 {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body>
+  <h1>Inspire Now</h1>
+  <div class="box" id="quoteBox" onclick="showQuote()">Touch Me!</div>
+  <p class="quote" id="quote"></p>
+
+  <script>
+    const quotes = [
+      "Believe in yourself!",
+      "You can do anything you set your mind to.",
+      "Every day is a second chance.",
+      "Success is not final, failure is not fatal.",
+      "Keep pushing forward!",
+      "Dream big and dare to fail.",
+      "Hard work beats talent when talent doesn't work hard.",
+      "Stay focused and never give up.",
+      "Do what you can, with what you have, where you are.",
+      "Opportunities don't happen, you create them.",
+      "Failure is the opportunity to begin again, only more intelligently.",
+      "The only way to achieve the impossible is to believe it is possible.",
+      "Do not wait for the perfect moment; take the moment and make it perfect.",
+      "Great things never come from comfort zones.",
+      "You are your only limit.",
+      "Stay positive. Work hard. Make it happen.",
+      "Success doesn’t come to you. You go to it.",
+      "The harder you work for something, the greater you’ll feel when you achieve it.",
+      "Push yourself, because no one else is going to do it for you.",
+      "Dream it. Believe it. Build it.",
+      "If it doesn’t challenge you, it won’t change you.",
+      "Believe you can, and you're halfway there.",
+      "What you get by achieving your goals is not as important as what you become by achieving your goals.",
+      "Don’t stop when you’re tired. Stop when you’re done.",
+      "Doubt kills more dreams than failure ever will.",
+      "It always seems impossible until it’s done.",
+      "Work hard in silence, let success make the noise.",
+      "Start where you are. Use what you have. Do what you can.",
+      "If you want something you've never had, you must be willing to do something you've never done.",
+      "Great things take time.",
+      "Small steps in the right direction can turn out to be the biggest steps of your life.",
+      "Be the energy you want to attract.",
+      "Every accomplishment starts with the decision to try.",
+      "Go the extra mile. It’s never crowded.",
+      "Success usually comes to those who are too busy to be looking for it.",
+      "Don’t watch the clock; do what it does. Keep going.",
+      "Believe in the magic of new beginnings.",
+      "Wake up with determination. Go to bed with satisfaction.",
+      "Action is the foundational key to all success.",
+      "You are capable of amazing things.",
+      "It’s not whether you get knocked down; it’s whether you get up.",
+      "Make today so awesome that yesterday gets jealous.",
+      "The best way to predict the future is to create it.",
+      "Stay hungry. Stay foolish.",
+      "The difference between ordinary and extraordinary is that little extra.",
+      "Success is walking from failure to failure with no loss of enthusiasm.",
+      "Your limitation—it’s only your imagination.",
+      "Sometimes we’re tested not to show our weaknesses, but to discover our strengths.",
+      "Don’t wait for the right opportunity. Create it."
+    ];
+
+    const styles = ['style1', 'style2', 'style3', 'style4', 'style5'];
+
+    function showQuote() {
+      const box = document.getElementById('quoteBox');
+      const quoteElement = document.getElementById('quote');
+
+      // Hide the box
+      box.classList.add('hidden');
+
+      // Display a random quote with random style
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomStyle = styles[Math.floor(Math.random() * styles.length)];
+      quoteElement.textContent = quotes[randomIndex];
+      quoteElement.className = `quote ${randomStyle}`;
+    }
+  </script>
+</body>
+</html>
